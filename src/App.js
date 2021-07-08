@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react'
+import { Container } from 'react-bootstrap';
 import './App.css';
+import Carousal from './Components/Carousal';
+import MainDisplayArea from './Containers/MainDisplayArea';
+import Header from './Components/Header';
+import Jumbo from './Components/Jumbo';
+import MyCoins from './Containers/MyCoins';
+// import {  Router, Switch,Route, Link } from "react-router-dom";
+
 
 function App() {
+
+  const [coinsMain, setCoinsMain] = useState([])
+  const [filterString, setFilterString] = useState("")
+  const [myCoins, setMyCoins] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/coins")
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        setCoinsMain(data.slice(0, 10))
+      })
+  }, [])
+
+  const filteredCoins = () => {
+    return coinsMain.filter((coin) =>
+      coin.name.toLowerCase().includes(filterString.toLowerCase())
+    )
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container fluid>
+        <Jumbo key="jumbo" />
+        <Header className="searchCoins" setFilter={setFilterString} key="header" />
+        <Carousal className="topSectionSlide" key="Carousal" />
+        <MyCoins  myCoins={myCoins}/>
+        <div className="coinDisplayArea">
+          <MainDisplayArea allCoinData={filteredCoins()} key="mainDisplay" setMyCoins={setMyCoins} myCoins={myCoins}/>
+        </div>
+      </Container>
     </div>
   );
 }
