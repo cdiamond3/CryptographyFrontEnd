@@ -1,26 +1,24 @@
 import React from 'react'
-import { Navbar, Form, FormControl, Dropdown} from 'react-bootstrap'
+import { Navbar, Form, FormControl } from 'react-bootstrap'
+import { Link } from "react-router-dom"
 
 export default function Header({ setFilter }) {
     return (
         <div className="menuBar">
-            <Navbar >
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-                <Form inline>
-                    <FormControl
-                        type="text"
-                        onChange={(e) => setFilter(e.target.value)}
-                        placeholder="Search"
-                        className="mr-sm-2" />
-                </Form>
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Dropdown Button
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        <Dropdown.Item className="menuDrop" href="#/action-1">My PortFolio</Dropdown.Item>
-                    </Dropdown.Menu>
-                </Dropdown>
+            <Navbar expand="xlg" bg="info" variant="dark">
+                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbar-nav" />
+                <Navbar.Collapse id="navbar-nav">
+                    <Form inline>
+                        <FormControl
+                            type="text"
+                            onChange={(e) => setFilter(e.target.value)}
+                            placeholder="Search"
+                            className="mr-sm-2" />
+                        <Link color="red" to="/">Return Home</Link>
+                        <Link to="/mycoins"> My PortFolio</Link>
+                    </Form>
+                </Navbar.Collapse>
             </Navbar>
         </div>
     )

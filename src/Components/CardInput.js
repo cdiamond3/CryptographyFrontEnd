@@ -4,21 +4,31 @@ import { Form, Button } from 'react-bootstrap'
 export default function CardInput({ coin, setMyCoins, myCoins }) {
 
     const dateLabel = new Date()
-
     const [userCoinInput, setUserCoinInput] = useState("")
+
     
-
-
+    myCoins= (`${coin.name}: $${userCoinInput} ${dateLabel}`)
+    
     const handleUserInputChange = (e) => {
         setUserCoinInput(e.target.value)
     }
-
-    const handleUserInputClick = () => {
-        return setMyCoins(myCoins + `${coin.name}: $${userCoinInput} ${dateLabel}`)
-    }
-    // console.log(myCoins)
-
     
+    
+    const saveCoin = () => {
+        fetch('http://localhost:3000/coin_inputs', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Accept": 'application/json'
+            },
+            body: JSON.stringify({
+                user_coin_input: myCoins
+            }),
+        })
+            .then((res) => res.json())
+            .then(console.log(myCoins))
+    }
+
 
     return (
         <div>
@@ -27,14 +37,11 @@ export default function CardInput({ coin, setMyCoins, myCoins }) {
                     <Form.Label  >
                         Amount Spent
                     </Form.Label>
-                    <Form.Control onChange={(e) => handleUserInputChange(e)} />
+                    <Form.Control type="text" onChange={(e) => handleUserInputChange(e)} />
                 </Form.Group>
-                <Button className="button" variant="primary" size="small" block onClick={(e) => handleUserInputClick(e)}>
-                    Add To Portfolio 
+                <Button className="button" variant="primary" size="small" block value={userCoinInput} onClick={(e) => saveCoin(e)}>
+                    Add To Portfolio
                 </Button>
-                <Button className="button2" variant="primary" size="small" block >
-                    See Charts!
-                </Button >
             </Form>
         </div>
     )
