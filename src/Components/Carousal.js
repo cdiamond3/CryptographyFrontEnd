@@ -8,7 +8,7 @@ export default function Carousal() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="https://static.independent.co.uk/2021/07/01/10/dogecoin%20price%20elon%20musk%20doge.jpg?width=982&height=726&auto=webp&quality=75"
+                        src="https://photographylife.com/wp-content/uploads/2020/03/Dan-Ballard-Landscapes-6.jpg"
                         alt="First slide"
                     />
                     <Carousel.Caption>

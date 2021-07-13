@@ -11,6 +11,7 @@ export default function MainDisplayArea({ allCoinData, handleChange, handleClick
 
     return (
         <div>
+            <h1 className="mainDisplayTitle"> Top 10 Coins </h1>
             {renderCoinCard()}
         </div>
     )

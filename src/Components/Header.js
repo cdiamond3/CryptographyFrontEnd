@@ -2,11 +2,12 @@ import React from 'react'
 import { Navbar, Form, FormControl } from 'react-bootstrap'
 import { Link } from "react-router-dom"
 
+
 export default function Header({ setFilter }) {
     return (
         <div className="menuBar">
             <Navbar expand="xlg" bg="info" variant="dark">
-                <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                <h2><Link color="red" to="/">My Warm Wallet!</Link></h2>
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
                     <Form inline>

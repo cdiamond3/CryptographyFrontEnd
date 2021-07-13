@@ -14,7 +14,6 @@ debugger
             datasets: [
                 {
                     label: 'Price:',
-                    // fill: false,
                     lineTension: 0.5,
                     backgroundColor: 'rgba(75,192,192,1)',
                     borderColor: 'rgba(0,0,0,1)',
@@ -28,7 +27,6 @@ debugger
             datasets: [
                 {
                     label: 'Price:',
-                    // fill: false,
                     lineTension: 0.5,
                     backgroundColor: 'rgba(75,192,192,1)',
                     borderColor: 'rgba(0,0,0,1)',
@@ -58,7 +56,6 @@ debugger
                         labels: priceLabels,
                         datasets: [{
                             label: 'Price:',
-                            // fill: false,
                             lineTension: 0.5,
                             backgroundColor: 'rgba(75,192,192,1)',
                             borderColor: 'rgba(0,0,0,1)',
@@ -70,7 +67,6 @@ debugger
                         labels: volumeLabels,
                         datasets: [{
                             label: 'Volume:',
-                            // fill: false,
                             lineTension: 0.5,
                             backgroundColor: 'rgba(178, 201, 0, 0.7)',
                             borderColor: 'rgba(0,0,0,1)',
@@ -81,23 +77,6 @@ debugger
                 })
             })
     }
-
-
-
-
-    // new Date(datenumber)
-
-    //make a function to go through price array, this.state.marketCoin.prices
-
-    // Math.floor(new Date().getTime()/1000.0) The getTime method returns the time in milliseconds.
-    //this above function will turn regular time into unix time. interp that into fetch url.
-    // take current date as from and current date - 90days as to
-
-    // savePrice = () => {
-    //     if(this.props.coin.current_price !== this.props.coin.current_price + 1)
-    //         this.state.datasets.data.push(this.props.coin.current_price)
-    // }
-
 
     render() {
         return (

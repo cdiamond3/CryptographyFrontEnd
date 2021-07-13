@@ -14,13 +14,12 @@ function App() {
   const [coinsMain, setCoinsMain] = useState([])
   const [filterString, setFilterString] = useState("")
   const [myCoins, setMyCoins] = useState([])
-  
+
 
   useEffect(() => {
     fetch("http://localhost:3000/coins")
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         setCoinsMain(data.slice(0, 10))
       })
   }, [])
@@ -36,10 +35,10 @@ function App() {
       <Container fluid>
         <Route exact path="/" render={(routerprops) => <Jumbo key="jumbo" />} />
         <Route exact path="/" render={(routerprops) => <Header className="searchCoins" setFilter={setFilterString} myCoins={myCoins} key="header" />} />
-        <Route path="/mycoins" render={(routerprops) =>  <MyCoins key={"myCoins"}  myCoins={myCoins} setMyCoins={setMyCoins}/>}/>
-        <Route exact path="/" render={(routerprops) => <Carousal className="topSectionSlide" key="Carousal" />}/>
+        <Route path="/mycoins" render={(routerprops) => <MyCoins key="myRenderedCoins" myCoins={myCoins} setMyCoins={setMyCoins} />} />
+        <Route exact path="/" render={(routerprops) => <Carousal className="topSectionSlide" key="Carousal" />} />
         <div className="coinDisplayArea">
-          <Route exact path="/" render={(routerprops) => <MainDisplayArea allCoinData={filteredCoins()} key="mainDisplay" setMyCoins={setMyCoins} myCoins={myCoins}/> }  />
+          <Route exact path="/" render={(routerprops) => <MainDisplayArea allCoinData={filteredCoins()} key="mainDisplay" setMyCoins={setMyCoins} myCoins={myCoins} />} />
         </div>
       </Container>
     </div>

@@ -9,8 +9,8 @@ export default function CardFront({coin, handleChange, handleClick, setMyCoins, 
                 <Card.Body >
                     <div className="content">
                         <Card.Img className="image" width="300px" src={coin.image} />
-                        <Card.Title className="coinName">{coin.name}</Card.Title>
-                        <Card.Text >
+                        <Card.Title className="coinName1">{coin.name}</Card.Title>
+                        <Card.Text className="coinCardTextFront">
                             All Time High: {coin.ath}
                             <br></br>
                             All Time Low: {coin.atl}

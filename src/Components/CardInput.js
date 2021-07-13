@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 
-export default function CardInput({ coin, setMyCoins, myCoins }) {
+export default function CardInput({ coin, myCoins }) {
 
     const dateLabel = new Date()
     const [userCoinInput, setUserCoinInput] = useState("")
 
-    
-    myCoins= (`${coin.name}: $${userCoinInput} ${dateLabel}`)
+    myCoins = (`${coin.name}: $${userCoinInput} ${dateLabel}`)
     
     const handleUserInputChange = (e) => {
         setUserCoinInput(e.target.value)
     }
-    
     
     const saveCoin = () => {
         fetch('http://localhost:3000/coin_inputs', {
@@ -22,7 +20,8 @@ export default function CardInput({ coin, setMyCoins, myCoins }) {
                 "Accept": 'application/json'
             },
             body: JSON.stringify({
-                user_coin_input: myCoins
+                user_coin_input: myCoins,
+                dates: dateLabel
             }),
         })
             .then((res) => res.json())
@@ -39,7 +38,7 @@ export default function CardInput({ coin, setMyCoins, myCoins }) {
                     </Form.Label>
                     <Form.Control type="text" onChange={(e) => handleUserInputChange(e)} />
                 </Form.Group>
-                <Button className="button" variant="primary" size="small" block value={userCoinInput} onClick={(e) => saveCoin(e)}>
+                <Button className="addToPortfolio" variant="primary" size="small" block value={userCoinInput} onClick={(e) => saveCoin(e)}>
                     Add To Portfolio
                 </Button>
             </Form>
