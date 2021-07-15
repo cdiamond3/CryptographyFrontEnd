@@ -5,10 +5,9 @@ export default function Jumbo() {
     return (
         <div>
             <Jumbotron className="jumbo">
-                <h1>Hello, world!</h1>
+                <h1>Welcome To Your Warm Wallet!</h1>
                 <p>
-                    This is a simple hero unit, a simple jumbotron-style component for calling
-                    extra attention to featured content or information.
+                    Your Warm Wallet is a place for you to manage your crypto investments without holding your real money in an app!
                 </p>
                 <p>
                     <Button variant="primary">Learn more</Button>

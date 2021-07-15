@@ -3,41 +3,38 @@ import { Carousel } from 'react-bootstrap'
 
 export default function Carousal() {
     return (
-        <div>
+        <div className="carousel">
             <Carousel >
-                <Carousel.Item>
+                <Carousel.Item >
                     <img
-                        className="d-block w-100"
-                        src="https://photographylife.com/wp-content/uploads/2020/03/Dan-Ballard-Landscapes-6.jpg"
+                        className="carouselImage"
+                        src="https://i.redd.it/0beov6uj6cz61.jpg"
                         alt="First slide"
                     />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <Carousel.Caption className='cText'>
+                        <h3>WHO LET THE DOGES OUT?!</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
+                <Carousel.Item >
                     <img
-                        className="d-block w-100"
-                        src="https://photographylife.com/wp-content/uploads/2020/03/Dan-Ballard-Landscapes-6.jpg"
+                        className="carouselImage"
+                        src="https://crixto.com/wp-content/uploads/2020/12/Review-of-Ethereum-Crixto.jpg"
                         alt="Second slide"
                     />
 
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <Carousel.Caption className='cText'>
+                        <h3>Can ETH rebound?!</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
-                        src="https://photographylife.com/wp-content/uploads/2020/03/Dan-Ballard-Landscapes-6.jpg"
+                        className="carouselImage"
+                        src="https://cdn.wallpapersafari.com/60/29/LPcCRg.jpg"
                         alt="Third slide"
                     />
 
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    <Carousel.Caption className='cText'>
+                        <h3>How Long Will The Crash Go?!</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>

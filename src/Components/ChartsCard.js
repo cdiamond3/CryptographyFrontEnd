@@ -86,7 +86,7 @@ debugger
                     options={{
                         title: {
                             display: true,
-                            text: 'Price Change Over 1 Year',
+                            text: 'Price Change Over 1 Week',
                             fontSize: 16
                         },
                         legend: {
@@ -100,7 +100,7 @@ debugger
                     options={{
                         title: {
                             display: true,
-                            text: 'Price Change Over 1 Year',
+                            text: 'Volume Change Over 1 Week',
                             fontSize: 16
                         },
                         legend: {

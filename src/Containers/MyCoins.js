@@ -3,18 +3,24 @@ import Header from '../Components/Header'
 import { Button, Card, Container, ButtonGroup, Form } from 'react-bootstrap'
 
 
-export default function MyCoins({ setMyCoins, myCoins, }) {
-    const [coinList, setCoinList] = useState([])
-    const dateLabel = new Date()
+export default function MyCoins() {
+
+    const [transactionList, setTransactionList] = useState([])
+    const [coinUpdate, setCoinUpdate] = useState("")
+
 
     useEffect(() => {
         fetch("http://localhost:3000/coin_inputs")
             .then(res => res.json())
             .then(updatedCoins => {
-                setCoinList(updatedCoins)
+                setTransactionList(updatedCoins)
                 console.log()
             })
     }, [])
+
+    const handleTransactionUpdate = (e) => {
+        setCoinUpdate(e.target.value)
+    }
 
     const deleteCoinTransaction = (id) => {
         const deleteUrl = `http://localhost:3000/coin_inputs/${id}`
@@ -23,54 +29,61 @@ export default function MyCoins({ setMyCoins, myCoins, }) {
                 method: 'DELETE',
             })
             .then((res) => res.json())
-            .then(setCoinList(coinList.filter(coin => coin.id !== id)))
+            .then(setTransactionList(transactionList.filter(coin => coin.id !== id)))
     }
 
-   const handleCoinUpdate = (id) => {
-    const updateUrl = `http://localhost:3000/coin_inputs/${id}`
-    fetch(updateUrl, {
-        method: 'PATCH',
+    const handleCoinUpdate = (id) => {
+        const updateUrl = `http://localhost:3000/coin_inputs/${id}`
+        fetch(updateUrl, {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
-                "Accept": 'application/json'
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
-                user_coin_input: myCoins,
-                dates: dateLabel
-        }),
-    })
-        .then(res => res.json())
-        .then(setMyCoins())
-   }
+                user_coin_input: coinUpdate,
+            }),
+        })
+        .then(window.location.reload());
+    }
 
-const filterMyCoinsByCoin = () => {
-    let sortedCoins = coinList.sort((a, b) => a.user_coin_input.localeCompare(b.user_coin_input))
-    sortedCoins = [...sortedCoins]
-    setCoinList(sortedCoins)
-}
-const filterMyCoinsByDate = () => {
-    let sortedDateCoins = coinList.sort((a, b) => a.dates.localeCompare(b.dates))
-    sortedDateCoins = [...sortedDateCoins]
-    setCoinList(sortedDateCoins)
-}
+    const filterMyCoinsByCoin = () => {
+        let sortedCoins = transactionList.sort((a, b) => a.name.localeCompare(b.name))
+        sortedCoins = [...sortedCoins]
+        setTransactionList(sortedCoins)
+    }
+    const filterMyCoinsByDate = () => {
+        let sortedDateCoins = transactionList.sort((a, b) => a.dates.localeCompare(b.dates))
+        sortedDateCoins = [...sortedDateCoins]
+        setTransactionList(sortedDateCoins)
+    }
 
-return (
-    <Container fluid className="myCoins">
-        <Header />
-        <ButtonGroup className="filterButtons">
-            <Button >Filter By Amount</Button>
-            <Button onClick={() => filterMyCoinsByDate()} >Filter By Date</Button>
-            <Button onClick={() => filterMyCoinsByCoin()}>Filter By Coin</Button>
-        </ButtonGroup>
-        <div className="my-coins-container">
-            {coinList.map((coin) =>
-                <Card key={coin.id} className="myCoinsCard">
-                    <Card.Text>{coin.user_coin_input}</Card.Text>
-                    <Form.Control></Form.Control>
-                    <Button onClick={() => handleCoinUpdate(coin.id)}>Edit Transaction</Button>
-                    <Button onClick={() => deleteCoinTransaction(coin.id)}>Delete Transaction</Button>
-                </Card>)}
-        </div>
-    </Container>
-)
+    const filterMyCoinsByAmount= () => {
+        let sortedAmountCoins = transactionList.sort((a, b) => a.user_coin_input.localeCompare(b.user_coin_input))
+        sortedAmountCoins = [...sortedAmountCoins]
+        setTransactionList(sortedAmountCoins)
+    }
+
+
+    return (
+        <Container fluid className="myCoins">
+            <Header />
+            <h1> My Portfolio! </h1>
+            <ButtonGroup className="filterButtons">
+                <Button onClick={() => filterMyCoinsByDate()} >Filter By Date</Button>
+                <Button onClick={() => filterMyCoinsByCoin()}>Filter By Coin</Button>
+                <Button onClick={() => filterMyCoinsByAmount()}>Filter By Amount</Button>
+            </ButtonGroup>
+            <div className="my-coins-container">
+                {transactionList.map((coin) =>
+                    <Card key={coin.id} className="myCoinsCard">
+                        <Card.Title> {coin.name}! </Card.Title>
+                        <Card.Text> You purchased ${coin.user_coin_input} of {coin.name}! Purchased on {coin.dates} </Card.Text> 
+                        <Form.Control onChange={(e) => handleTransactionUpdate(e)}></Form.Control>
+                        <Button color="warning" onClick={() => handleCoinUpdate(coin.id)}>Edit Transaction</Button>
+                        <Button onClick={() => deleteCoinTransaction(coin.id)}>Delete Transaction</Button>
+                    </Card>)}
+            </div>
+        </Container>
+    )
 }

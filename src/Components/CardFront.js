@@ -3,6 +3,8 @@ import { Card, Button } from 'react-bootstrap'
 import CardInput from './CardInput'
 
 export default function CardFront({coin, handleChange, handleClick, setMyCoins, myCoins, flipCard}) {
+
+    
     return (
         <div className="container">
             <Card style={{ width: '18rem' }} className="card">

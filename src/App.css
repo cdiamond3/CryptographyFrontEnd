@@ -174,7 +174,7 @@ body::after {
   width: 100%;
   height: 100%;
   position: relative;
-  top: 10rem;
+  top: 6rem;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -183,7 +183,7 @@ body::after {
 }
 
 .navbar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -193,6 +193,7 @@ body::after {
   align-items: center;
   justify-content: space-between;
   padding: .5rem 1rem;
+  z-index: 6;
 }
 
 .coinCardText {
@@ -239,9 +240,57 @@ body::after {
 .filterButtons {
   display: flex;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 4rem;
   left: 0;
   width: 100%;
+  z-index: 1;
 }
 
+.carouselImage {
+  width: 100%;
+}
+
+.linkButtons {
+  display: inline-block !important;
+  padding: 0.63rem 1.88rem !important;
+  background-color: rgba(174, 250, 250, 0.686) !important;
+  border-radius: 1.87rem !important;
+  text-transform: capitalize !important;
+  font-weight: 400 !important;
+  transition: all 0.3s ease !important;
+  font-size: .75rem !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  color: rgb(0, 0, 0) !important;
+  line-height: 1.5 !important;
+  user-select: none !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+
+.linkButtons:hover {
+  display: inline-block !important;
+  padding: 0.63rem 1.88rem !important;
+  background-color: rgba(174, 250, 189, 0.686) !important;
+  border-radius: 1.87rem !important;
+  text-transform: capitalize !important;
+  font-weight: 400 !important;
+  transition: all 0.3s ease !important;
+  font-size: .85rem !important;
+  cursor: pointer !important;
+  font-family: inherit !important;
+  color: rgb(0, 0, 0) !important;
+  line-height: 1.5 !important;
+  user-select: none !important;
+}
+
+
+.cText{
+z-index: 1;
+}
+.carousel{
+z-index: 1;
+}
